@@ -1,4 +1,21 @@
 import EditorJS from '@editorjs/editorjs';
+import EditorJSHeader from '@editorjs/header';
+import EditorJSList from '@editorjs/list';
+import EditorJSRawTool from '@editorjs/raw';
+import EditorJSQuote from '@editorjs/quote';
+import EditorJSTable from '@editorjs/table'
+import EditorJSWarning from '@editorjs/warning';
+import EditorJSCodeTool from '@editorjs/code';
+import EditorJSChecklist from '@editorjs/checklist';
+import EditorJSEmbed from '@editorjs/embed';
+import EditorJSUnderline from '@editorjs/underline';
+import EditorJSDelimiter from '@editorjs/delimiter';
+import EditorJSParagraph from '@editorjs/paragraph';
+import EditorJSInlineCode from '@editorjs/inline-code';
+import EditorJSLinkTool from '@editorjs/link';
+import EditorJSMarker from '@editorjs/marker';
+import EditorJSSimpleImage from "@editorjs/simple-image";
+
 import {ElementMixin} from '@vaadin/component-base/src/element-mixin.js';
 import {defineCustomElement} from '@vaadin/component-base/src/define.js';
 import {ResizeMixin} from '@vaadin/component-base/src/resize-mixin.js';
@@ -65,11 +82,55 @@ class JmixBlockEditor extends ResizeMixin(InputFieldMixin(ThemableMixin(ElementM
     ready() {
         super.ready();
 
+
+
         const editor = this.shadowRoot.querySelector('[part="input-field"]');
 
         this._editor = new EditorJS({
             holder: editor,
-            data: JSON.parse(this.value)
+            // data: JSON.parse(this.value),
+
+            tools: {
+                header: EditorJSHeader,
+                raw: EditorJSRawTool,
+                code: EditorJSCodeTool,
+                embed: EditorJSEmbed,
+                underline: EditorJSUnderline,
+                delimiter: EditorJSDelimiter,
+                inlineCode: EditorJSInlineCode,
+                marker: EditorJSMarker,
+                image: EditorJSSimpleImage,
+                quote: {
+                    class: EditorJSQuote,
+                    inlineToolbar: true
+                },
+                table: {
+                    class: EditorJSTable,
+                    inlineToolbar: true
+                },
+                list: {
+                    class: EditorJSList,
+                    inlineToolbar: true
+                },
+                warning: {
+                    class: EditorJSWarning,
+                    inlineToolbar: true
+                },
+                checklist: {
+                    class: EditorJSChecklist,
+                    inlineToolbar: true
+                },
+                paragraph: {
+                    class: EditorJSParagraph,
+                    inlineToolbar: true
+                },
+                linkTool: {
+                    class: EditorJSLinkTool,
+                    config: {
+                        endpoint: 'http://localhost:8080', //TODO backend endpoint for url data fetching,
+                    }
+                }
+            }
         });
 
         this._tooltipController = new TooltipController(this);
