@@ -1,0 +1,8 @@
+rootProject.name = 'jmix-block-editor-addon'
+
+include 'jmix-block-editor'
+include 'jmix-block-editor-starter'
+
+rootProject.children.each { p1 ->
+    p1.buildFileName = "${p1.name}.gradle"
+}
