@@ -3,12 +3,12 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath "io.jmix.gradle:jmix-gradle-plugin:2.4.1"
+        classpath 'io.jmix.gradle:jmix-gradle-plugin:2.5.1'
     }
 }
 
 group = 'gr.netmechanics.jmix'
-version = '0.0.56'
+version = '0.0.57'
 
 subprojects {
     apply plugin: 'java-library'
@@ -23,7 +23,7 @@ subprojects {
     }
 
     jmix {
-        bomVersion = '2.4.1'
+        bomVersion = '2.5.1'
         projectId = 'blked'
     }
 
